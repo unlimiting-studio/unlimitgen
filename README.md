@@ -23,9 +23,18 @@ npm link
 
 그 뒤 `ugen` 명령을 사용할 수 있습니다.
 
-## 인증(비밀번호 입력)
+## 인증(비밀번호 입력 + 저장)
 
-아래 환경변수가 없으면 실행 시 숨김 입력(password prompt)으로 토큰을 받습니다.
+토큰을 저장하려면 아래 명령을 사용하세요.
+
+```bash
+ugen auth --provider gemini
+ugen auth --provider openai
+ugen auth --provider grok
+```
+
+토큰 저장 후에는 생성 명령에서 자동으로 읽습니다.
+우선순위는 `환경변수 > 저장 토큰 > 즉시 비밀번호 입력` 입니다.
 
 - Gemini: `GEMINI_API_KEY` 또는 `GOOGLE_API_KEY`
 - OpenAI: `OPENAI_API_KEY`
@@ -104,7 +113,6 @@ ugen generate video \
 ## npm 배포(Trusted Publish)
 
 - 워크플로우: `.github/workflows/publish.yml`
-- 가이드: `docs/trusted-publish.md`
 
 Release(Published) 생성 시 OIDC 기반 trusted publish로 배포됩니다.
 
