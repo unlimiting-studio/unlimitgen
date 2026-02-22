@@ -1,4 +1,4 @@
-**unlimitgen**
+**ugen**
 
 Gemini / OpenAI / Grok(xAI) 모델로 이미지/동영상을 생성하는 CLI입니다.
 
@@ -21,7 +21,7 @@ npm run build
 npm link
 ```
 
-그 뒤 `unlimitgen` 명령을 사용할 수 있습니다.
+그 뒤 `ugen` 명령을 사용할 수 있습니다.
 
 ## 인증(비밀번호 입력)
 
@@ -36,14 +36,14 @@ npm link
 모델 목록과 모델별 옵션 키 보기:
 
 ```bash
-unlimitgen models
-unlimitgen models --provider gemini --modality video
+ugen models
+ugen models --provider gemini --modality video
 ```
 
 이미지 생성(입력 순서 보장):
 
 ```bash
-unlimitgen generate image \
+ugen generate image \
   --provider openai \
   --model gpt-image-1.5 \
   --part text:"고양이 우주비행사" text:"필름 카메라 스타일" \
@@ -53,7 +53,7 @@ unlimitgen generate image \
 이미지 + 텍스트 혼합 입력(여러 개, 순서 보장):
 
 ```bash
-unlimitgen generate image \
+ugen generate image \
   --provider gemini \
   --model gemini-2.5-flash-image-preview \
   --part text:"첫 이미지의 구도를 유지" image:./ref1.png text:"두 번째 이미지 색감을 반영" image:./ref2.jpg
@@ -62,7 +62,7 @@ unlimitgen generate image \
 동영상 생성:
 
 ```bash
-unlimitgen generate video \
+ugen generate video \
   --provider openai \
   --model sora-2 \
   --part text:"네온 도시를 달리는 고양이" image:./first-frame.png \
@@ -72,7 +72,7 @@ unlimitgen generate video \
 고급 옵션(JSON) 병합:
 
 ```bash
-unlimitgen generate video \
+ugen generate video \
   --provider gemini \
   --model veo-3.1-generate-preview \
   --part text:"바닷가 일출 타임랩스" \

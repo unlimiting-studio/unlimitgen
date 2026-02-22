@@ -10,7 +10,7 @@ import { parseParts } from './utils/parts.js';
 const program = new Command();
 
 program
-  .name('unlimitgen')
+  .name('ugen')
   .description('Gemini/OpenAI/Grok 이미지/비디오 생성 CLI')
   .version('0.1.0');
 
