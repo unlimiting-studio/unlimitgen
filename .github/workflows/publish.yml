@@ -27,7 +27,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
         run: npm ci
@@ -44,5 +43,25 @@ jobs:
           echo "package: $PKG_NAME"
           test "$PKG_NAME" = "@unlimiting/unlimitgen"
 
+      - name: Check if version already exists on npm
+        id: check_version
+        run: |
+          PKG_NAME=$(node -p "require('./package.json').name")
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          echo "package=$PKG_NAME version=$PKG_VERSION"
+          if npm view "${PKG_NAME}@${PKG_VERSION}" version >/dev/null 2>&1; then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+            echo "skip publish: version already exists"
+          else
+            echo "already_published=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Publish (Trusted Publishing + Provenance)
+        if: steps.check_version.outputs.already_published == 'false'
+        env:
+          NODE_AUTH_TOKEN: ""
         run: npm publish --access public --provenance
+
+      - name: Skip message
+        if: steps.check_version.outputs.already_published == 'true'
+        run: echo "Publish skipped because the same version is already on npm."
