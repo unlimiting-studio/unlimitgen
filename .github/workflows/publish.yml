@@ -58,8 +58,6 @@ jobs:
 
       - name: Publish (Trusted Publishing + Provenance)
         if: steps.check_version.outputs.already_published == 'false'
-        env:
-          NODE_AUTH_TOKEN: ""
         run: npm publish --access public --provenance
 
       - name: Skip message
