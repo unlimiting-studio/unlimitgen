@@ -1,0 +1,48 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '릴리즈 태그 (예: v0.2.0)'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Verify package name
+        run: |
+          PKG_NAME=$(node -p "require('./package.json').name")
+          echo "package: $PKG_NAME"
+          test "$PKG_NAME" = "@unlimiting/unlimitgen"
+
+      - name: Publish (Trusted Publishing + Provenance)
+        run: npm publish --access public --provenance

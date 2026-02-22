@@ -101,6 +101,18 @@ ugen generate video \
 - xAI(Grok): OpenAI 호환 SDK(base URL `https://api.x.ai/v1`)
 - 출력물: 기본 `./outputs`
 
+## npm 배포(Trusted Publish)
+
+- 워크플로우: `.github/workflows/publish.yml`
+- 가이드: `docs/trusted-publish.md`
+
+Release(Published) 생성 시 OIDC 기반 trusted publish로 배포됩니다.
+
+## ugen 스킬 문서
+
+- 경로: `skills/ugen/SKILL.md`
+- 설치/인증/사용 흐름/트러블슈팅을 사용자 관점에서 정리한 가이드입니다.
+
 ## 옵션 정보 출처(공식 문서)
 
 - Google GenAI SDK (`generateImages`, `generateVideos`, `generateContent`): https://www.npmjs.com/package/@google/genai
