@@ -1,0 +1,43 @@
+{
+  "name": "unlimitgen",
+  "version": "0.1.0",
+  "description": "Unified CLI for image/video generation via Gemini/OpenAI/Grok",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/cli.js",
+    "dev": "tsx src/cli.ts",
+    "lint": "eslint . --ext .ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unlimiting-studio/unlimitgen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/unlimiting-studio/unlimitgen/issues"
+  },
+  "homepage": "https://github.com/unlimiting-studio/unlimitgen#readme",
+  "bin": {
+    "unlimitgen": "dist/cli.js"
+  },
+  "dependencies": {
+    "@google/genai": "^1.42.0",
+    "commander": "^14.0.3",
+    "inquirer": "^13.2.5",
+    "openai": "^6.22.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
+    "@typescript-eslint/parser": "^8.56.0",
+    "eslint": "^10.0.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
