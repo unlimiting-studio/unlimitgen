@@ -1,6 +1,6 @@
 {
   "name": "@unlimiting/unlimitgen",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Unified CLI for image/video generation via Gemini/OpenAI/Grok",
   "main": "index.js",
   "scripts": {
