@@ -1,5 +1,5 @@
 {
-  "name": "unlimitgen",
+  "name": "@unlimiting/unlimitgen",
   "version": "0.1.0",
   "description": "Unified CLI for image/video generation via Gemini/OpenAI/Grok",
   "main": "index.js",
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/unlimiting-studio/unlimitgen#readme",
   "bin": {
-    "unlimitgen": "dist/cli.js"
+    "ugen": "dist/cli.js"
   },
   "dependencies": {
     "@google/genai": "^1.42.0",

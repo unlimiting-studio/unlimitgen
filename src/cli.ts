@@ -3,14 +3,14 @@ import { Command } from 'commander';
 import { MODEL_CATALOG } from './core/catalog.js';
 import { generateImage, generateVideo } from './core/generate.js';
 import { Modality, Provider } from './core/types.js';
-import { resolveApiKey } from './utils/auth.js';
+import { authAndStoreToken, getTokenFilePath, resolveApiKey } from './utils/auth.js';
 import { mergeOptions, parseOptionPairs } from './utils/options.js';
 import { parseParts } from './utils/parts.js';
 
 const program = new Command();
 
 program
-  .name('unlimitgen')
+  .name('ugen')
   .description('Gemini/OpenAI/Grok 이미지/비디오 생성 CLI')
   .version('0.1.0');
 
@@ -38,6 +38,17 @@ program
   });
 
 const generate = program.command('generate').description('콘텐츠 생성');
+
+program
+  .command('auth')
+  .description('provider 토큰을 비밀번호 입력으로 저장')
+  .requiredOption('-p, --provider <provider>', 'gemini|openai|grok')
+  .action(async (opts: { provider: Provider }) => {
+    const provider = assertProvider(opts.provider);
+    await authAndStoreToken(provider);
+    console.log(`저장 완료: ${provider} 토큰`);
+    console.log(`저장 위치: ${getTokenFilePath()}`);
+  });
 
 generate
   .command('image')
